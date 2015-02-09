@@ -40,24 +40,12 @@ var renderPlayArea = function(type, letter, letterPositions) {
   console.log("\n\n");
   console.log(playArea.toString().split(',').join(' '));
   console.log("\n\n");
-  console.log(letterPositions);
   // if there are no _'s left, win!
   if (playArea.toString().split(',').join(' ').search('_') === -1) {
     console.log("You win!");
   }
 
 };
-
-  // check if letter has been guessed
-var doubleCheck = function() {
-  for (g = 0; g < wrongGuesses; g++) {
-    if (letter == wrongGuesses[g]) {
-      console.log("You've already guessed that letter, try again");  
-    } else {
-      return true;
-    }
-  }
-};   
 
 var guess = function(letter) {
   // loop through each letter in the word
@@ -75,6 +63,8 @@ var guess = function(letter) {
     renderPlayArea("update", letter, letterPositions);
   // if there are lives available 
   } else if ( guesses < lives - 1 ) {
+    console.log("wrongGuesses: " + wrongGuesses);
+    console.log("letter: " + letter);
     // if there has been at least one wrong guess, check if repeat guess
     if (wrongGuesses.length > 0) {
       // loop through wrong guesses
