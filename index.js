@@ -13,20 +13,21 @@ var word = words[number].toLowerCase();
 // Count word length
 var wordLength = word.length;
 
+var letterPositions = [];
+var playArea = [];
+
 // Build play area
 var renderPlayArea = function(type, letter, letterPositions) {
-  var playArea = [];
   // loop through each letter in the word
   for ( i = 0; i < wordLength; i++) {
     // if at start, or incorrect guess, display blank lines
     if (type == "start") {
-      playArea += ("_ ");
+      playArea[i] = ("_");
     // if correct guess, display guessed letter(s)
     } else if (type == "update") {
-      if (i === letterPositions[i]) {
-        playArea += letter + " ";
+      if (word[i] === letterPositions[i]) {
+        playArea[i] = letterPositions[i];
       } else {
-        playArea += "_ ";
       }
     }
   }
@@ -37,8 +38,14 @@ var renderPlayArea = function(type, letter, letterPositions) {
     console.log("Wrong Guesses: " + wrongGuesses);
   }
   console.log("\n\n");
-  console.log(playArea);
+  console.log(playArea.toString().split(',').join(' '));
   console.log("\n\n");
+  console.log(letterPositions);
+  // if there are no _'s left, win!
+  if (playArea.toString().split(',').join(' ').search('_') === -1) {
+    console.log("You win!");
+  }
+
 };
 
   // check if letter has been guessed
@@ -53,27 +60,41 @@ var doubleCheck = function() {
 };   
 
 var guess = function(letter) {
-  var letterPositions = [];
   // loop through each letter in the word
   for (i = 0; i < word.length; i++) {
     // if the guessed letter matches a letter in the word, add to list
     if (word[i] == letter) {
-      letterPositions.push(i);
+      letterPositions[i] = letter;
     // otherwise, add null to list
     } else {
-      letterPositions.push(null);
+      letterPositions[i] = null;
     }
   }
-  // success condition
+  // if the letter is in the word, render
   if (word.search(letter) > -1) {
     renderPlayArea("update", letter, letterPositions);
-  // fail condition
+  // if there are lives available 
   } else if ( guesses < lives - 1 ) {
-    console.log(doubleCheck());
-    guesses += 1;
-    wrongGuesses.push(letter);
-    renderPlayArea("start");
-    console.log("Letter not in word");
+    // if there has been at least one wrong guess, check if repeat guess
+    if (wrongGuesses.length > 0) {
+      // loop through wrong guesses
+      for (var i = 0; i < wrongGuesses.length; i++) {
+        // if it is a repeat guess, tell user
+        if (wrongGuesses[i] == letter) {
+          console.log("You've already tried that letter");
+        // if it's not a repeat guess, dock a life
+        } else {
+          wrongGuesses.push(letter);
+          guesses += 1;
+        }
+      }
+    // if there have been no wrong guesses
+    } else {
+      wrongGuesses.push(letter);
+      guesses += 1;
+      renderPlayArea("start");
+      console.log("Letter not in word");
+    }
   // game over condition
   } else {
     console.log("Hangman. Game Over.");
