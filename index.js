@@ -34,7 +34,6 @@ var renderPlayArea = function(type, letter, letterPositions) {
     }
   }
   console.log("\n\n");
-  console.log("Guesses Guessed: " + (guesses));
   console.log("Guesses Remaining: " + (lives - guesses)); 
   if (wrongGuesses.length > 0) {
     console.log("Wrong Guesses: " + wrongGuesses);
@@ -65,17 +64,10 @@ var guess = function(letter) {
     renderPlayArea("update", letter, letterPositions);
   // if there are lives available 
   } else if ( guesses < lives - 1 ) {
-    if (guesses < 1) {
       wrongGuesses.push(letter);
       guesses += 1;
-      renderPlayArea("start");
+      renderPlayArea("upate", letter);
       console.log("Letter not in word");
-    } else {
-      wrongGuesses.push(letter);
-      guesses += 1;
-      renderPlayArea("update", letter);
-      console.log("Letter not in word");
-    }
   // game over condition
   } else {
     console.log("Hangman. Game Over.");
