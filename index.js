@@ -41,24 +41,42 @@ var renderPlayArea = function(type, letter, letterPositions) {
   console.log("\n\n");
 };
 
-var guess = function(letter) {
-  var letterPositions = [];
-  for (i = 0; i < word.length; i++) {
-    // i
-    if (word[i] == letter) {
-      letterPositions.push(i);
+  // check if letter has been guessed
+var doubleCheck = function() {
+  for (g = 0; g < wrongGuesses; g++) {
+    if (letter == wrongGuesses[g]) {
+      console.log("You've already guessed that letter, try again");  
     } else {
-      letterPositions.push("");
+      return true;
     }
   }
-  console.log(letterPositions);
-  if (letterPositions.length > 0) {
+};   
+
+var guess = function(letter) {
+  var letterPositions = [];
+  // loop through each letter in the word
+  for (i = 0; i < word.length; i++) {
+    // if the guessed letter matches a letter in the word, add to list
+    if (word[i] == letter) {
+      letterPositions.push(i);
+    // otherwise, add null to list
+    } else {
+      letterPositions.push(null);
+    }
+  }
+  // success condition
+  if (word.search(letter) > -1) {
     renderPlayArea("update", letter, letterPositions);
-  } else if ( guesses < lives ) {
+  // fail condition
+  } else if ( guesses < lives - 1 ) {
+    console.log(doubleCheck());
     guesses += 1;
     wrongGuesses.push(letter);
     renderPlayArea("start");
     console.log("Letter not in word");
+  // game over condition
+  } else {
+    console.log("Hangman. Game Over.");
   }
 };
 
