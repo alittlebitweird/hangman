@@ -72,10 +72,12 @@ var guess = function(letter) {
         // if it is a repeat guess, tell user
         if (wrongGuesses[i] == letter) {
           console.log("You've already tried that letter");
+          renderPlayArea("update", letter, letterPositions);
         // if it's not a repeat guess, dock a life
         } else {
           wrongGuesses.push(letter);
           guesses += 1;
+          renderPlayArea("update", letter, letterPositions);
         }
       }
     // if there have been no wrong guesses
