@@ -1,0 +1,31 @@
+body {
+  background: #252525;
+  font-family: 'Inconsolata'; 
+  color: #fff;
+}
+
+.top {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.ide {
+  background: #000;
+  height: 600px;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.ide h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+input {
+  background: #252525;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+
+}

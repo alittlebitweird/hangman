@@ -37,46 +37,31 @@ var renderPlayArea = function(type, letter, letterPositions) {
   // Guesses remaining
   var guessesRemaining = ("Guesses Remaining: " + (lives - guesses)); 
   console.log(guessesRemaining); 
-  if (type == "start") {
-    // create GUI elements
-    $(".ide").html("<h2 class='guesses-remaining'></h2><h2 class='wrong-guesses'></h2><h2 class='instructions'></h2><h2 class='play-area'></h2><h2 class='win'></h2><form class='guess'><input type='text', placeholder='guess a letter', name: 'guess'/></form>");
-  }
-  $(".guesses-remaining").html(guessesRemaining);
+  $(".ide").append("<h2></h2>");
+  $(".ide h2").append(guessesRemaining);
   
   // Wrong guesses
   if (wrongGuesses.length > 0) {
     var wrongGuessesText = ("Wrong Guesses: " + wrongGuesses);
     console.log(wrongGuessesText);
-    $(".wrong-guesses").html(wrongGuessesText);
+    $(".ide").append(wrongGuessesText);
   }
  
   // Instructions
-  $(".instructions").html("Guess a letter");
   console.log("Guess a letter with guess(letter)");
+  $(".ide").append("<h2>Guess a letter with guess(letter)</h2>");
   
   // Play Area
   console.log("\n\n");
-  var playAreaString = playArea.toString().split(',').join(' ');
-  $(".play-area").html(playAreaString);
-  console.log(playAreaString);
+  console.log(playArea.toString().split(',').join(' '));
   console.log("\n\n");
   
   // if there are no _'s left, win!
-  if (playAreaString.search('_') === -1) {
-    $(".win").html("You win!");
+  if (playArea.toString().split(',').join(' ').search('_') === -1) {
     console.log("You win!");
   }
 
 };
-// Guesses
-$(".guess").keypress(function(event) {
-  if (event.which == 13) {
-    event.preventDefault();
-    var $input = $('.guess :input');
-    $("form").submit();
-    guess($input);
-  }
-});
 
 var guess = function(letter) {
   // loop through each letter in the word
