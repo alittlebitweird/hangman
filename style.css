@@ -1,5 +1,9 @@
 body {
   background: #252525;
+  /*background-image: url('http://www.clipartsfree.net/vector/large/1273636396_Vector_Clipart.png');*/
+  background-size: cover;
+  background-position: 35px 250px;
+  background-repeat: no-repeat;
   font-family: 'Inconsolata'; 
   color: #fff;
 }
@@ -9,24 +13,65 @@ body {
   text-align: center;
 }
 
+.screen-shadow {
+  background: #989279;
+}
+
 .ide {
+  border: solid 30px rgb(150, 144, 121);
   background: #000;
-  height: 600px;
+  min-height: 400px;
+  width: 42%;
+  border-radius: 50px;
+  margin: 103px auto;
+  padding: 20px;
+}
+
+.hangman-container {
   width: 800px;
   margin: auto;
   padding: 20px;
 }
 
-.ide h2 {
+.hangman-frame {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  float: right;
+}
+
+.gui-container {
+  width: 50%;
+  margin: -14px auto;
+  text-align: center;
+  float: right;
+}
+
+h2 {
+  letter-spacing: 1px;
   font-size: 20px;
   font-weight: 400;
 }
 
+.play-area, .hangman-frame {
+  font-size: 25px;
+}
+
+form {
+  text-align: center;
+  margin: 20px auto;
+}
+
 input {
+  font-size: 29px;
   background: #252525;
-  border: none;
-  font-size: 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 2px;
   color: #fff;
+  outline: none;
+  width: 350px;
 
 }
 
