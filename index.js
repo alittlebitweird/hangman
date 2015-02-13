@@ -36,13 +36,19 @@ var renderPlayArea = function(type, letter, letterPositions) {
   }
   if (type == "start") {
     // create GUI elements
-    $("body").append("<div class='ide'></div>");
-    $(".ide").append("<div class='hangman-frame'></div>");
+    $("body").append("<div class='apple-outer'></div>");
+    $(".apple-outer").append("<div class='apple-inner'></div>");
+    $(".apple-inner").append("<div class='ide'></div>");
     $(".ide").append("<div class='gui-container'></div>");
+    $(".ide").append("<div class='hangman-frame'></div>");
+    $(".apple-outer").after("<div class='apple-under'></div>");
+    $(".ide").after("<div class='apple-button'></div>");
     $(".ide").after("<form><input type='text', placeholder='guess a letter', name='guess'/></form>");
-    $(".gui-container").html("<h2 class='guesses-remaining'></h2><h2 class='wrong-guesses'></h2><h2 class='instructions'></h2><h2 class='play-area'></h2><h2 class='win'></h2><h2 class='win-lose'></h2>");
+    $(".gui-container").html("<h2 class='guesses-remaining'></h2><h2 class='wrong-guesses'></h2><h2 class='instructions'></h2><h2 class='win'></h2><h2 class='win-lose'></h2>");
+    $(".hangman-frame").after("<h2 class='play-area'></h2>");
     // Game Over Scenario
   } else if (type == "gameOver") {
+    $('.instructions').remove();
     $('.win-lose').html("Hangman, Game Over!");
     gameOver = true;
     console.log("Hangman. Game Over.");
@@ -227,6 +233,7 @@ var hangmanFrames = [hangman1, hangman2, hangman3, hangman4, hangman5, hangman6,
 $( document ).ready(function() {
   console.log(word);
   renderPlayArea("start");
+  $( "input[name=guess]" ).focus();
 });
 
 

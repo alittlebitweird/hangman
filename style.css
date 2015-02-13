@@ -13,17 +13,31 @@ body {
   text-align: center;
 }
 
-.screen-shadow {
-  background: #989279;
+.apple-outer {
+  background: rgb(197, 190, 156);
+  border-radius: 30px;
+  width: 60%;
+  margin: auto;
+  padding: 3% 0;
+  position: relative;
+  z-index: 2;
+}
+
+.apple-inner {
+  background-image: linear-gradient(rgb(178, 169, 124),rgb(196, 189, 156));
+  border-radius: 30px;
+  width: 90%;
+  margin: auto;
+  padding: 5% 0;
 }
 
 .ide {
   border: solid 30px rgb(150, 144, 121);
   background: #000;
   min-height: 400px;
-  width: 42%;
-  border-radius: 50px;
-  margin: 103px auto;
+  width: 75%;
+  border-radius: 20px;
+  margin: auto;
   padding: 20px;
 }
 
@@ -34,15 +48,15 @@ body {
 }
 
 .hangman-frame {
-  width: 50%;
-  margin: auto;
+  width: 45%;
+  margin: 10% auto 0;
   text-align: center;
   float: right;
 }
 
 .gui-container {
-  width: 50%;
-  margin: -14px auto;
+  width: 55%;
+  margin: 10% auto;
   text-align: center;
   float: right;
 }
@@ -57,13 +71,42 @@ h2 {
   font-size: 25px;
 }
 
+.play-area {
+  margin: auto;
+  text-align: center;
+  clear: both;
+  padding-top: 12%;
+}
+
+.apple-button {
+  background: rgb(215, 211, 194);
+  height: 60px;
+  width: 60px;
+  border: solid 2px rgb(173, 165, 134);
+  border-radius: 5px;
+  margin: 7%;
+}
+
+.apple-under {
+  background: rgb(129, 124, 92);
+  width: 55%;
+  height: 100px;
+  margin: -10px auto;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
 form {
   text-align: center;
-  margin: 20px auto;
+  width: 70%;
+  float: right;
+  margin: 8% 0;
 }
 
 input {
-  font-size: 29px;
+  font-size: 25px;
+  padding: 8px;
   background: #252525;
   border-top: none;
   border-left: none;
@@ -75,147 +118,3 @@ input {
 
 }
 
-
-/*
- * This css file is part of jquery terminal
- *
- * Licensed under GNU LGPL Version 3 license
- * Copyright (c) 2011-2013 Jakub Jankiewicz <http://jcubic.pl>
- *
- */
-.terminal .terminal-output .format, .cmd .format,
-.cmd .prompt, .cmd .prompt div, .terminal .terminal-output div div{
-    display: inline-block;
-}
-.cmd .clipboard {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0.01;
-    filter: alpha(opacity = 0.01);
-    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.01);
-    width: 2px;
-}
-.cmd > .clipboard {
-    position: fixed;
-}
-.terminal {
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-}
-.cmd {
-    padding: 0;
-    margin: 0;
-    height: 1.3em;
-    /*margin-top: 3px; */
-}
-.cmd .cursor.blink {
-    -webkit-animation: blink 1s infinite steps(1, start);
-       -moz-animation: blink 1s infinite steps(1, start);
-        -ms-animation: blink 1s infinite steps(1, start);
-            animation: blink 1s infinite steps(1, start);
-}
-@keyframes blink {
-  0%, 100% {
-        background-color: #000;
-        color: #aaa;
-  }
-  50% {
-        background-color: #bbb; /* not #aaa because it's seem there is Google Chrome bug */
-        color: #000;
-  }
-}
-@-webkit-keyframes blink {
-  0%, 100% {
-        background-color: #000;
-        color: #aaa;
-  }
-  50% {
-        background-color: #bbb;
-        color: #000;
-  }
-}
-@-ms-keyframes blink {
-  0%, 100% {
-        background-color: #000;
-        color: #aaa;
-  }
-  50% {
-        background-color: #bbb;
-        color: #000;
-  }
-}
-@-moz-keyframes blink {
-  0%, 100% {
-        background-color: #000;
-        color: #aaa;
-  }
-  50% {
-        background-color: #bbb;
-        color: #000;
-  }
-}
-.terminal .terminal-output div div, .cmd .prompt {
-    display: block;
-    line-height: 14px;
-    height: auto;
-}
-.cmd .prompt {
-    float: left;
-}
-.terminal, .cmd {
-    font-family: FreeMono, monospace;
-    color: #aaa;
-    background-color: #000;
-    font-size: 12px;
-    line-height: 14px;
-}
-.terminal-output > div {
-    /*padding-top: 3px;*/
-    min-height: 14px;
-}
-.terminal .terminal-output div span {
-    display: inline-block;
-}
-.cmd span {
-    float: left;
-    /*display: inline-block; */
-}
-.terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
-    background-color: #aaa;
-    color: #000;
-}
-.terminal .terminal-output div div::-moz-selection,
-.terminal .terminal-output div span::-moz-selection,
-.terminal .terminal-output div div a::-moz-selection {
-    background-color: #aaa;
-    color: #000;
-}
-.terminal .terminal-output div div::selection,
-.terminal .terminal-output div div a::selection,
-.terminal .terminal-output div span::selection,
-.cmd > span::selection,
-.cmd .prompt span::selection {
-    background-color: #aaa;
-    color: #000;
-}
-.terminal .terminal-output div.error, .terminal .terminal-output div.error div {
-    color: red;
-}
-.tilda {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1100;
-}
-.clear {
-    clear: both;
-}
-.terminal a {
-    color: #0F60FF;
-}
-.terminal a:hover {
-    color: red;
-}
